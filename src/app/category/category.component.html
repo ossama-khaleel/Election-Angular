@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container-xxl py-5 bg-dark page-header ">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Types Of Election</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <!--  <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
+                <li class="breadcrumb-item text-white active" aria-current="page">Types Of Election</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Search Start -->
+
+<div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <div class="container">
+        <form class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input [value]="name"  (change)="SreachInput($event)" type="text" class="form-control border-0" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-dark border-0 w-100">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Search End -->
+<div class="row container-xxl py-5">
+    <div class="col-12 col-lg-4 col-md-6 col-sm-12" *ngFor="let obj of home.category">
+        <div class="card h-100">
+            <img src="../../assets/img/election.jpg" class="card-img-top" alt="Skyscrapers" />
+            <div class="card-body text-center">
+                <h1 class="card-title">{{obj.categoryname}}</h1>
+            </div>
+            <button style="font-size: 20px;" class="btn btn-primary" (click)="showProfile(obj.id)">Vote</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,174 @@
+<app-navbar></app-navbar>
+
+
+
+<div class="bg-default">
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header bg-gradient-primary py-7 py-lg-8">
+            <div class="container">
+                <div class="header-body text-center mb-7">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5 col-md-6">
+                            <h1 class="text-white">Welcome!</h1>
+                            <p class="text-lead text-light">Use these awesome forms to login or create new account in
+                                your project for free.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator separator-bottom separator-skew zindex-100">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container mt--8 pb-5">
+            <!-- Table -->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-header bg-transparent pb-5">
+                            <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+                            <div class="text-center">
+                                <a href="#" class="btn btn-neutral btn-icon mr-4">
+                                    <span class="btn-inner--icon"><img
+                                            src="../assets/img/icons/common/github.svg"></span>
+                                    <span class="btn-inner--text">Github</span>
+                                </a>
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img
+                                            src="../assets/img/icons/common/google.svg"></span>
+                                    <span class="btn-inner--text">Google</span>
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <small>Or sign up with credentials</small>
+                            </div>
+                            <form role="form">
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                        </div>
+                                        <input type="file" #file [formControl]="img"
+                                            (change)="uploadFile(file.files)">
+                                    </div>
+                                    <mat-error *ngIf="email.hasError('required')">
+                                        image required
+                                    </mat-error>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                        </div>
+                                        <input class="form-control" id="email" placeholder="Email" type="email" matInput
+                                            [formControl]="email">
+                                    </div>
+                                    <mat-error *ngIf="email.hasError('email')">
+                                        Please enter a valid email address
+                                    </mat-error>
+                                    <mat-error *ngIf="email.hasError('required')">
+                                        Email is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                        </div>
+                                        <input class="form-control" id="phonenumber" placeholder="phonenumber"
+                                            type="tel" matInput [formControl]="phonenumber"
+                                            onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+                                    </div>
+                                    <mat-error *ngIf="phonenumber.hasError('minlength')">
+                                        Please enter a valid phone number
+                                    </mat-error>
+                                    <mat-error *ngIf="phonenumber.hasError('required')">
+                                        phone number is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        <input class="form-control" id="password" placeholder="Password" type="password"
+                                            matInput [formControl]="password">
+                                    </div>
+                                    <mat-error *ngIf="password.hasError('minlength')">
+                                        Minimum 10 charachter
+                                    </mat-error>
+                                    <mat-error *ngIf="password.hasError('required')">
+                                        Password is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                    
+                                <div class="text-center">
+                                    <button (click)="Register()" [disabled]="!email.valid||!password.valid"
+                                        type="button" class="btn btn-success mt-4">Create account</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <app-footer></app-footer>
+    <!-- <div class="form">
+    <div id="login">
+        <h1>Welcome Back!</h1>
+        <form>
+            <div class="field-wrap">
+                <label>
+                    SSN<span class="req">*</span>
+                </label>
+                <mat-form-field class="example-full-width">
+                    <input type="tel" matInput [formControl]="ssn" />
+                    <mat-error *ngIf="ssn.hasError('minlength') ">
+                        Please enter a valid SSN
+                    </mat-error>
+                    <mat-error *ngIf="ssn.hasError('required')">
+                        SSN is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Password<span class="req">*</span>
+                </label>
+                <mat-form-field class="example-full-width">
+                    <input type="password" matInput [formControl]="password" />
+                    <mat-error *ngIf="password.hasError('minlength') ">
+                        Please enter a strong password
+                    </mat-error>
+
+                    <mat-error *ngIf="password.hasError('required')">
+                        password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="field-wrap">
+                <input style="margin-left: -22ex;" type="checkbox" id="checkbox" />
+                <label style="margin-left: 1ex; margin-top: -10px;" for="checkbox"> Remember me </label>
+            </div>
+            <button class="button button-block" [disabled]="!password.valid||!ssn.valid" (click)="submit()">Log
+                In</button>
+        </form>
+    </div>
+</div>  -->
+    <!-- /form -->

@@ -1,0 +1,117 @@
+<!-- Header End -->
+<app-navbar></app-navbar>
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Contact US</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+             <!--  <li class="breadcrumb-item"><a href="#">Pages</a></li> -->  
+                <li class="breadcrumb-item text-white active" aria-current="page">Contact Us</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Contact For Any Query</h1>
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4" *ngFor="let obj of home.aboutus">
+                    <div class="col-md-4 wow fadeIn" data-wow-delay="0.1s" >
+                        <div class="d-flex align-items-center bg-light rounded p-4">
+                            <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3"
+                                style="width: 45px; height: 45px;">
+                                <i class="fa fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <span>{{obj.name}} , Jordan</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="d-flex align-items-center bg-light rounded p-4">
+                            <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3"
+                                style="width: 45px; height: 45px;">
+                                <i class="fa fa-envelope-open text-primary"></i>
+                            </div>
+                            <span>{{obj.email}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="d-flex align-items-center bg-light rounded p-4">
+                            <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3"
+                                style="width: 45px; height: 45px;">
+                                <i class="fa fa-phone-alt text-primary"></i>
+                            </div>
+                            <span>+{{obj.phonenumber}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="position-relative rounded w-100 h-100" src="./assets/img/jordan.jpg">
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <p class="mb-4">You can contact us and send your messages through the following form:</p>
+                    <form [formGroup]="createForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" matInput
+                                    formControlName="name">
+                                    <label for="name">Your Name</label>
+                                    <mat-error *ngIf="createForm.controls['name'].hasError('required')">
+                                        Name is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" matInput
+                                    formControlName="email">
+                                    <label for="email">Your Email</label>
+                                    <mat-error *ngIf="createForm.controls['email'].hasError('required')">
+                                        Email is <strong>required</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.controls['email'].hasError('email')">
+                                        Enter a Valid <strong>Email</strong>
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject" matInput
+                                    formControlName="subject">
+                                    <label for="subject">Subject</label>
+                                    <mat-error *ngIf="createForm.controls['subject'].hasError('required')">
+                                        Subject is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message"
+                                        style="height: 150px" matInput
+                                        formControlName="message"></textarea>
+                                    <label for="message">Message</label>
+                                    <mat-error *ngIf="createForm.controls['message'].hasError('required')">
+                                        Message is <strong>required</strong>
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button [disabled]="!createForm.valid" (click)="saveData()" class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<!-- Contact End -->

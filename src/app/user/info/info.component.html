@@ -1,0 +1,79 @@
+<nav class="navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <app-sidebar-user></app-sidebar-user>
+</nav>
+<div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Profile</a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text">
+                    </div>
+                </div>
+            </form>
+            <!-- User -->
+            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                <app-profile></app-profile>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+
+        <!-- Dark table -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <!-- <h3 class="text-white mb-0">Card tables</h3> -->
+                        <!-- <button class="btn btn-info">Add Home</button> -->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">place of residence</th>
+                                    <th scope="col">place of residence village </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span *ngFor="let village of home.placeofresidencevillage">
+                                    <td *ngIf="home.userinfo.placeofresidencevillageid == village.id">
+                                         {{village.placeofresidencevillage}}
+                                    </td>
+                                    </span>
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let residence of home.placeofresidence">
+                                    <td *ngIf="home.userinfo.placeofresidenceid == residence.id">
+                                        {{residence.placeofresidence}}
+                                    </td>
+                                    </span>
+                                    </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

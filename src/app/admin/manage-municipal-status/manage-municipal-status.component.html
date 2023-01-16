@@ -1,0 +1,219 @@
+<nav class="navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <app-sidebar></app-sidebar>
+</nav>
+<div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Manage Municipal
+                Status</a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text" (change)="SreachInput($event)">
+                    </div>
+                </div>
+            </form>
+            <!-- User -->
+            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                <app-profile></app-profile>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+
+        <!-- Dark table -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <!-- <h3 class="text-white mb-0">Card tables</h3> -->
+                        <button (click)="OpenCreateDialog()" class="btn btn-info">Add Municipal Status</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">MunicipalnameId</th>
+                                    <th scope="col">President</th>
+                                    <th scope="col">Memebers</th>
+                                    <th scope="col">Decentralized</th>
+                                    <th scope="col">GovernorateId</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let obj of home.municipalStatus">
+                                    <td>
+                                        <span *ngFor="let obj1 of home.municipalName">
+                                    <td *ngIf="obj.municipalnameid==obj1.id">
+                                        {{obj1.municipalname}}
+                                    </td>
+                                    </span>
+                                    </td>
+                                    <td>
+                                        {{obj.president}}
+                                    </td>
+                                    <td>
+                                        {{obj.memebers}}
+                                    </td>
+                                    <td>
+                                        {{obj.decentralized}}
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let obj1 of home.governorate">
+                                    <td *ngIf="obj.governorateid==obj1.id">
+                                        {{obj1.governoratename}}
+                                    </td>
+                                    </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a style="color: red;" class="dropdown-item "><button
+                                                        (click)="OpenDeleteDialog(obj.id)"
+                                                        class="btn btn-danger">Delete</button></a>
+                                                <a style="color: rgb(132, 132, 207);" class="dropdown-item"><button
+                                                        class="btn btn-info"
+                                                        (click)="OpenUpdateDialog(obj)">Update</button></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Form -->
+<ng-template #callCreateDialog>
+    <h2 mat-dialog-title>Add Municipal Status</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="createForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>municipalname_Id</mat-label>
+                <input type="number" matInput formControlName="municipalnameid" placeholder="municipalnameId">
+                <mat-error *ngIf="createForm.controls['municipalnameid'].hasError('required')">
+                    Please Enter Municipal Name Id
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>president</mat-label>
+                <input type="number" matInput formControlName="president" placeholder="president">
+                <mat-error *ngIf="createForm.controls['president'].hasError('required')">
+                    Please Enter president
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>memebers</mat-label>
+                <input type="number" matInput formControlName="memebers" placeholder="memebers">
+                <mat-error *ngIf="createForm.controls['memebers'].hasError('required')">
+                    Please Enter memebers
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>decentralized</mat-label>
+                <input type="number" matInput formControlName="decentralized" placeholder="decentralized">
+                <mat-error *ngIf="createForm.controls['decentralized'].hasError('required')">
+                    Please Enter decentralized
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>governorate_Id</mat-label>
+                <input type="number" matInput formControlName="governorateid" placeholder="governorateId">
+                <mat-error *ngIf="createForm.controls['governorateid'].hasError('required')">
+                    Please Enter Municipal Name Id
+                </mat-error>
+            </mat-form-field>
+            <br>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveData()">save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<!-- Delete -->
+<ng-template #callDeleteDialog>
+    <h4>Are You Sure You Want To Delete</h4>
+    <button class="btn btn-danger" mat-dialog-close="yes">
+        <h4 class="display-5">Yes</h4>
+    </button>
+    <button class="btn btn-info display-2" mat-dialog-close="no">
+        <h4 class="display-5 .text-white">No</h4>
+    </button>
+</ng-template>
+
+
+<!-- UPDATE FORM -->
+
+<ng-template #callUpdateDialog>
+    <h2 mat-dialog-title>Update Form</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="updateForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>municipalname_Id</mat-label>
+                <input type="number" matInput formControlName="municipalnameid" placeholder="municipalnameId"
+                    [(ngModel)]="p_data.municipalnameid">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>president</mat-label>
+                <input type="number" matInput formControlName="president" placeholder="president"
+                    [(ngModel)]="p_data.president">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>memebers</mat-label>
+                <input type="number" matInput formControlName="memebers" placeholder="memebers"
+                    [(ngModel)]="p_data.memebers">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>decentralized</mat-label>
+                <input type="number" matInput formControlName="decentralized" placeholder="decentralized"
+                    [(ngModel)]="p_data.decentralized">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>governorate_Id</mat-label>
+                <input type="number" matInput formControlName="governorateid" placeholder="governorateId"
+                    [(ngModel)]="p_data.governorateid">
+            </mat-form-field>
+            <br>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveUpdateData()">save</button>
+    </mat-dialog-actions>
+</ng-template>

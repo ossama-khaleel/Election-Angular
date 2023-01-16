@@ -1,0 +1,21 @@
+<div class="dotsContainer">
+  <div id="demo" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" [ngClass]="{active:isFirst}"
+        *ngFor="let obj of home.Hometestimonial; index as i;first as isFirst">
+        <div class="carousel-caption">
+          <img src="../../assets/img/{{obj.userimagepath}}" width="110px" height="110px">
+          <div id="image-caption" style="font-size: 20px;">{{obj.name}}</div>
+          <br>
+          <p>{{obj.message}}</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <i class='fas fa-arrow-left'></i>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <i class='fas fa-arrow-right'></i>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container-xxl py-5 bg-dark page-header">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Municipal</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <!--  <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
+                <li class="breadcrumb-item text-white active" aria-current="page">Municipal</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Header End -->
+
+<div class="container py-5">
+    <div class="row ">
+        <div class="col-lg-4 col-sm-6" *ngFor="let municipalStatus of home.municipalStatus" style="padding: 10px;">
+            <div class="card">
+                <img src="../../assets/img/1200px-Coat_of_arms_of_Jordan.svg.png" class="card-img-top" alt="..."
+                    width="100px" height="400px">
+                <div class="card-body text-center">
+                    <span *ngFor="let municipalName of home.municipalName">
+                        <h1 style="font-size: 35px;" class="card-text"
+                            *ngIf="municipalName.id == municipalStatus.municipalnameid">
+                            {{municipalName.municipalname}}</h1>
+                    </span>
+                    <h1 class="card-text">الرئاسة :{{municipalStatus.president}}</h1>
+                    <h1 class="card-text">الاعضاء:{{municipalStatus.memebers}}</h1>
+                    <h1 class="card-text">اللامركزية :{{municipalStatus.decentralized}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

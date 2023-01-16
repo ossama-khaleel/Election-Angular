@@ -1,0 +1,21 @@
+.row {
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+input.largerCheckbox {
+    transform: scale(2);
+}
+
+table {
+    counter-reset: rowNumber !important;
+    
+}
+
+table tr td span::before {
+    display: table-cell !important;
+    counter-increment: rowNumber !important;
+    content: counter(rowNumber) "." !important;
+    padding-right: 0.3em !important;
+    text-align: right !important;
+}

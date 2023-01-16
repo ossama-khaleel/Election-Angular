@@ -1,0 +1,108 @@
+<nav class="navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <app-sidebar></app-sidebar>
+</nav>
+<div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Manage About
+                Us</a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text">
+                    </div>
+                </div>
+            </form>
+            <!-- User -->
+            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                <app-profile></app-profile>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+
+        <!-- Dark table -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <!-- <h3 class="text-white mb-0">Card tables</h3> -->
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Title</th>
+
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let obj of home.aboutAll">
+                                    <td>
+                                        <img src="../../../assets/img/{{obj.aboutimage1}}" alt="" width="200" height="200">
+                                    </td>
+                                    <td>
+                                        {{obj.abouttitle1}}
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a style="color: rgb(132, 132, 207);" class="dropdown-item"><button
+                                                        class="btn btn-info"
+                                                        (click)="OpenUpdateDialog(obj)">Update</button></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- UPDATE FORM -->
+<ng-template #callUpdateDialog>
+    <h2 mat-dialog-title>Update Form</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="updateForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>title</mat-label>
+                <input type="text" matInput formControlName="abouttitle1" placeholder="Name"
+                    [(ngModel)]="p_data.abouttitle1">
+            </mat-form-field>
+            <br>
+            <input type="file" #file formControlName="aboutimage1" (change)="uploadFile(file.files)">
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveUpdateData()">save</button>
+    </mat-dialog-actions>
+</ng-template>

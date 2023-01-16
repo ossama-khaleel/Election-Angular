@@ -1,0 +1,183 @@
+<nav class="navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <app-sidebar-user></app-sidebar-user>
+</nav>
+<div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Profile</a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text">
+                    </div>
+                </div>
+            </form>
+            <!-- User -->
+            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                <app-profile></app-profile>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+
+        <!-- Dark table -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <!-- <h3 class="text-white mb-0">Card tables</h3> -->
+                        <!-- <button class="btn btn-info">Add Home</button> -->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Phoen Number</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {{home.userById.firstname}}
+                                    </td>
+                                    <td>
+                                        {{home.userById.lastname}}
+                                    </td>
+                                    <td>
+                                        {{home.userById.password}}
+                                    </td>
+                                    <td>
+                                        {{home.userById.phonenumber}}
+                                    </td>
+                                    <td>
+                                        {{home.userById.email}}
+                                    </td>
+                                    <td>
+                                        <img width="150" height="150"
+                                            src="../../../assets/img/{{home.userById.userimagepath}}" />
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <!-- <a style="color: red;" class="dropdown-item "><button
+                                                       
+                                                        class="btn btn-danger">Delete</button></a> -->
+                                                <a style="color: rgb(132, 132, 207);" class="dropdown-item"><button
+                                                        class="btn btn-info"
+                                                        (click)="OpenUpdateDialog(home.userById)">Update</button></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Form -->
+<!-- <ng-template #callCreateDialog>
+    <h2 mat-dialog-title>Add Home Details</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="createForm">
+            <input type="file" #file formControlName="homeimage1" (change)="uploadFile(file.files)">
+            <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Home Title 1</mat-label>
+                <input type="text" matInput formControlName="hometitle1" placeholder="Home Title 1">
+                <mat-error *ngIf="createForm.controls['hometitle1'].hasError('required')">
+                    Please Enter Home Title 1
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveData()">save</button>
+    </mat-dialog-actions>
+</ng-template> -->
+
+<!-- Delete -->
+<!-- <ng-template #callDeleteDialog>
+    <h4>Are You Sure You Want To Delete</h4>
+    <button class="btn btn-danger" mat-dialog-close="yes">
+        <h4 class="display-5">Yes</h4>
+    </button>
+    <button class="btn btn-info display-2" mat-dialog-close="no">
+        <h4 class="display-5 .text-white">No</h4>
+    </button>
+</ng-template> -->
+
+
+<!-- UPDATE FORM -->
+<ng-template #callUpdateDialog>
+    <h2 mat-dialog-title>Update Form</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="updateForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput formControlName="firstname" placeholder="First Name"
+                    [(ngModel)]="p_data.firstname">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput formControlName="lastname" placeholder="Last Name"
+                    [(ngModel)]="p_data.lastname">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="text" matInput formControlName="password" placeholder="Password"
+                    [(ngModel)]="p_data.password">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Phone Number</mat-label>
+                <input type="number" matInput formControlName="phonenumber" placeholder="Phone Number"
+                    [(ngModel)]="p_data.phonenumber">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Email" [(ngModel)]="p_data.email">
+            </mat-form-field>
+            <br>
+            <input type="file" #file formControlName="email" (change)="uploadFile(file.files)">
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveUpdateData()">save</button>
+    </mat-dialog-actions>
+</ng-template>

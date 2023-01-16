@@ -1,0 +1,207 @@
+<nav class="navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <app-sidebar></app-sidebar>
+</nav>
+<div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Manage About Us</a>
+            <!-- Form -->
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Search" type="text">
+                    </div>
+                </div>
+            </form>
+            <!-- User -->
+            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                <app-profile></app-profile>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+
+        <!-- Dark table -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <!-- <h3 class="text-white mb-0">Card tables</h3> -->
+                       
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Home Id</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let obj of home.contactus">
+                                    <td>
+                                        {{obj.name}}
+                                    </td>
+                                    <td>
+                                        {{obj.email}}
+                                    </td>
+                                    <td>
+                                        {{obj.subject}}
+                                    </td>
+                                    <td>
+                                        {{obj.message}}
+                                    </td>
+                                    <td>
+                                        {{obj.homeid}}
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a style="color: red;" class="dropdown-item "><button
+                                                        (click)="OpenDeleteDialog(obj.id)"
+                                                        class="btn btn-danger">Delete</button></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Form -->
+<ng-template #callCreateDialog>
+    <h2 mat-dialog-title>Add About Us</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="createForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Name">
+                <mat-error *ngIf="createForm.controls['name'].hasError('required')">
+                    Please Enter Name
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Email">
+                <mat-error *ngIf="createForm.controls['email'].hasError('required')">
+                    Please Enter Email
+                </mat-error>
+                <mat-error *ngIf="createForm.controls['email'].hasError('email')">
+                    Email @?
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Subject</mat-label>
+                <input type="text" matInput formControlName="subject" placeholder="Subject">
+                <mat-error *ngIf="createForm.controls['subject'].hasError('required')">
+                    Please Enter Subject
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Message</mat-label>
+                <input type="text" matInput formControlName="message" placeholder="Message">
+                <mat-error *ngIf="createForm.controls['message'].hasError('required')">
+                    Please Enter Message
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Home Id</mat-label>
+                <input type="number" matInput formControlName="homeid" placeholder="Home Id">
+                <mat-error *ngIf="createForm.controls['homeid'].hasError('required')">
+                    Please Enter Home Id
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveData()">save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<!-- Delete -->
+<ng-template #callDeleteDialog>
+    <h4>Are You Sure You Want To Delete</h4>
+    <button class="btn btn-danger" mat-dialog-close="yes">
+        <h4 class="display-5">Yes</h4>
+    </button>
+    <button class="btn btn-info display-2" mat-dialog-close="no">
+        <h4 class="display-5 .text-white">No</h4>
+    </button>
+</ng-template>
+
+
+<!-- UPDATE FORM -->
+<ng-template #callUpdateDialog>
+    <h2 mat-dialog-title>Update Form</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="updateForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Name"
+                    [(ngModel)]="p_data.name">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Email"
+                    [(ngModel)]="p_data.email">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Subject</mat-label>
+                <input type="text" matInput formControlName="subject" placeholder="Subject"
+                    [(ngModel)]="p_data.subject">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Message</mat-label>
+                <input type="text" matInput formControlName="message" placeholder="Message"
+                    [(ngModel)]="p_data.message">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Home Id</mat-label>
+                <input type="number" matInput formControlName="homeid" placeholder="Home Id"
+                    [(ngModel)]="p_data.homeid">
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveUpdateData()">save</button>
+    </mat-dialog-actions>
+</ng-template>

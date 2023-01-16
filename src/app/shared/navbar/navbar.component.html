@@ -1,0 +1,26 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0" style=" overflow: hidden">
+    <a href="index.html" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+        <img src="../../../assets/img/1200px-Coat_of_arms_of_Jordan.svg.png" alt="" width="100" height="60">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="" class="nav-item nav-link">Home</a>
+            <a routerLink="/aboutus" class="nav-item nav-link">About</a>
+            <a routerLink="/category" class="nav-item nav-link">Vote</a>
+            <a routerLink="/contactus" class="nav-item nav-link">Contact Us</a>
+            <a routerLink="/CandidateForm" class="nav-item nav-link">Candidate Form</a>
+            <a routerLink="/testimonialform" class="nav-item nav-link">Testimonial Form</a>
+            <a [hidden]="logAndreg" routerLink="/auth/login" class="nav-item nav-link">Login</a>
+            <a [hidden]="logAndreg" routerLink="/auth/reg" class="nav-item nav-link">register</a>
+            <a [hidden]="out"  (click)="logout()" routerLink="/auth/login"
+                class="nav-item nav-link">logout</a>
+            <a [hidden]="out" style="cursor: pointer;" (click)="DashBoard()" class="nav-item nav-link">DashBoard</a>
+        </div>
+    </div>
+
+</nav>
+<!-- Navbar End -->
